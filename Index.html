@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10172a">
+  <meta name="description" content="VEU ESTUDIANTIL: un movimiento independiente para dar voz al alumnado y defender sus intereses.">
+  <title>VEU ESTUDIANTIL | La voz del alumnado</title>
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #131c31;
+      --text: #f4f7ff;
+      --muted: #aab5ca;
+      --blue: #6c8cff;
+      --cyan: #4de1d2;
+      --border: rgba(255,255,255,.11);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11,16,32,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 1.05rem;
+      letter-spacing: 1px;
+    }
+
+    .logo span { color: var(--cyan); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: .92rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    .hero {
+      min-height: 590px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      padding: 100px 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, #263a704d, transparent 55%),
+        radial-gradient(ellipse at 80% 60%, #155c6650, transparent 50%);
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid #4de1d266;
+      color: var(--cyan);
+      background: #4de1d20d;
+      padding: 7px 15px;
+      border-radius: 100px;
+      font-size: .85rem;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 8vw, 5.8rem);
+      line-height: 1.05;
+      letter-spacing: -3px;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 690px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+      font-size: 1.13rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .btn:hover { transform: translateY(-3px); opacity: .9; }
+
+    .primary {
+      color: #081321;
+      background: linear-gradient(100deg, var(--blue), var(--cyan));
+    }
+
+    .secondary {
+      border: 1px solid var(--border);
+      background: #ffffff08;
+    }
+
+    section { padding: 85px 0; scroll-margin-top: 85px; }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 27px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #6c8cff88;
+    }
+
+    .card .emoji { font-size: 2rem; margin-bottom: 14px; }
+
+    .card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+
+    .card p { color: var(--muted); font-size: .96rem; }
+
+    .about {
+      background: #ffffff04;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about-content p {
+      color: var(--muted);
+      margin-top: 16px;
+    }
+
+    .contact-box {
+      max-width: 800px;
+      margin: auto;
+      padding: 35px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: linear-gradient(135deg, #182540, #10242c);
+    }
+
+    .contact-box > p {
+      color: var(--muted);
+      margin: 12px auto 25px;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .social {
+      display: inline-block;
+      padding: 12px 17px;
+      border: 1px solid var(--border);
+      background: #ffffff08;
+      border-radius: 10px;
+      transition: background .2s;
+      overflow-wrap: anywhere;
+    }
+
+    .social:hover { background: #6c8cff26; }
+
+    .email {
+      display: inline-block;
+      margin-top: 22px;
+      color: var(--cyan);
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    footer p + p { margin-top: 5px; }
+
+    @media (max-width: 750px) {
+      nav { padding: 16px 0; flex-direction: column; }
+      .nav-links { justify-content: center; gap: 12px 18px; }
+      .hero { min-height: 500px; padding: 75px 0; }
+      h1 { letter-spacing: -1.5px; }
+      .grid { grid-template-columns: 1fr; }
+      section { padding: 65px 0; }
+      .contact-box { padding: 25px 17px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container">
+      <a href="#inicio" class="logo">VEU <span>ESTUDIANTIL</span></a>
+
+      <div class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#nosotros">Quiénes somos</a>
+        <a href="#objetivos">Objetivos</a>
+        <a href="#participa">Participa</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <span class="tag">Movimiento estudiantil independiente</span>
+        <h1>La voz del <span>alumnado.</span></h1>
+        <p>
+          Queremos que los estudiantes sean escuchados, que sus
+          preocupaciones se tengan en cuenta y que la educación
+          mejore contando también con su opinión.
+        </p>
+
+        <div class="buttons">
+          <a class="btn primary" href="#nosotros">Conócenos</a>
+          <a class="btn secondary" href="#participa">Únete al proyecto ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="nosotros">
+      <div class="container">
+        <div class="section-heading">
+          <h2>¿Quiénes somos?</h2>
+          <p>Un proyecto que nace para dar más voz a los estudiantes.</p>
+        </div>
+
+        <div class="about-content">
+          <p>
+            VEU ESTUDIANTIL es un movimiento independiente nacido
+            en Cataluña con la voluntad de defender los intereses
+            del alumnado y promover una educación mejor.
+          </p>
+          <p>
+            Queremos empezar construyendo una comunidad de estudiantes,
+            escuchar sus problemas y proponer soluciones mediante
+            el diálogo, la participación y las iniciativas pacíficas.
+          </p>
+          <p>
+            Nuestro objetivo es crecer desde Cataluña y, en el futuro,
+            conectar con estudiantes de toda España.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="objetivos" class="about">
+      <div class="container">
+        <div class="section-heading">
+          <h2>¿Qué defendemos?</h2>
+          <p>Nuestras prioridades son escuchar, proponer y actuar.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="emoji">📢</div>
+            <h3>Dar voz al alumnado</h3>
+            <p>
+              Escuchar las opiniones, preocupaciones y propuestas
+              de los estudiantes.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="emoji">🎓</div>
+            <h3>Defender sus intereses</h3>
+            <p>
+              Visibilizar los problemas que afectan al alumnado,
+              incluidos los efectos de los conflictos educativos
+              en actividades como excursiones y colonias.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="emoji">🤝</div>
+            <h3>Buscar soluciones</h3>
+            <p>
+              Promover el diálogo y propuestas constructivas
+              que tengan en cuenta a estudiantes y comunidad educativa.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="participa">
+      <div class="container">
+        <div class="contact-box">
+          <div class="section-heading" style="margin-bottom: 0">
+            <h2>Tu voz también cuenta.</h2>
+          </div>
+
+          <p>
+            ¿Quieres colaborar, aportar ideas o conocer mejor
+            el proyecto? Síguenos en redes o escríbenos.
+          </p>
+
+          <div class="socials">
+            <a class="social"
+               href="https://www.tiktok.com/@vozestudiantil2026?is_from_webapp=1&amp;sender_device=pc"
+               target="_blank" rel="noopener noreferrer">
+              🎵 TikTok
+            </a>
+
+            <a class="social"
+               href="https://www.instagram.com/vozestudiantil26/"
+               target="_blank" rel="noopener noreferrer">
+              📸 Instagram
+            </a>
+          </div>
+
+          <a class="email"
+             href="mailto:vozestudiantil.contacto@gmail.com">
+            ✉ vozestudiantil.contacto@gmail.com
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>VEU ESTUDIANTIL</strong> · La voz del alumnado</p>
+      <p>Movimiento independiente en construcción.</p>
+      <p>© <span id="year"></span> VEU ESTUDIANTIL</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
